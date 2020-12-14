@@ -1,0 +1,9 @@
+.loginForm{
+    width: 30%;
+    margin-left:35%;
+    margin-top: 40px;
+}
+.signup,.loginbtn{
+    text-align: center;
+    margin-bottom: 5px;
+}
