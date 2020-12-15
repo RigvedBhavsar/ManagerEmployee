@@ -1,3 +1,4 @@
+//class for storing maneger details
 export class Manager {
     constructor(
         public firstname : string,

@@ -3,23 +3,15 @@
         <div>
             <a class="navbar-brand" href="#">MindBowser</a>
         </div>
-
-        <!-- <button mat-icon-button aria-label="Example icon-button with a login icon" class="navbtn" *ngIf="!_authService.loggedIn()" routerLink="/login" >
+        <!-- This will toggle the Logout and Login button -->
+         <button mat-icon-button aria-label="Example icon-button with a login icon" class="navbtn" *ngIf="!_auth.loggedIn()" routerLink="/login" >
             <mat-icon>login</mat-icon>
         </button>
-        <button  mat-icon-button aria-label="Example icon-button with a logout icon" class="navbtn" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">
-            <mat-icon>logout</mat-icon>
-        </button> -->
-
-
-        <button mat-icon-button aria-label="Example icon-button with a login icon" class="navbtn"
-        routerLink="/login" >
-            <mat-icon>login</mat-icon>
-        </button>
-        <button  mat-icon-button aria-label="Example icon-button with a logout icon" class="navbtn">
+        <button  mat-icon-button aria-label="Example icon-button with a logout icon" class="navbtn" *ngIf="_auth.loggedIn()" (click)="_auth.logoutUser()">
             <mat-icon>logout</mat-icon>
         </button>
     </nav>
+    <!-- Router Outlet -->
     <div class="router">
         <router-outlet></router-outlet>
     </div>

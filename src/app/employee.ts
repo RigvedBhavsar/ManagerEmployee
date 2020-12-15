@@ -1,3 +1,5 @@
+//format for storing employee details
+
 export class Employee {
     constructor(
         public firstname : string,

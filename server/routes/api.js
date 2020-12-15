@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const {ObjectId} = require('bson');
 
 const Maneger = require('../models/maneger');
 const Employee = require('../models/employee');
@@ -8,8 +7,8 @@ const Employee = require('../models/employee');
 const jwt = require('jsonwebtoken');
 
 
+//Cheking Tokens
 function ensureToken(req,res,next){
-
     const bearerHeader = req.headers["authorization"];
     if(typeof bearerHeader !== 'undefined'){
         const bearer = bearerHeader.split(" ");
@@ -21,7 +20,7 @@ function ensureToken(req,res,next){
         res.status(403);
     }
 }
-
+//Maneger Login
 router.post('/loginManeger', (req, res) => {
     let userData = req.body
     Maneger.findOne({email : userData.email}, (err, user)=>{
@@ -45,7 +44,7 @@ router.post('/loginManeger', (req, res) => {
 })
 
 
-//this will post the data on server
+//Maneger Signup
 router.post('/signupManeger', (req,res)=>{
     let userData = req.body;
     let user = new Maneger(userData);
@@ -61,7 +60,7 @@ router.post('/signupManeger', (req,res)=>{
     })
 })
 
-
+//Get All Employees
 router.get('/getEmp', ensureToken , async(req, res) => {
     try{
         const emp = await Employee.find()
@@ -71,8 +70,7 @@ router.get('/getEmp', ensureToken , async(req, res) => {
     }
 })
 
-
-
+//Addinf Employee
 router.post('/addEmp', async(req,res) => {
     const empDet = req.body;
     const emp = new Employee(empDet);
@@ -84,8 +82,7 @@ router.post('/addEmp', async(req,res) => {
     }
 })
 
-
-
+//Updating Employee
 router.put('/update/:id', async(req, res)=>{
     const empUpdateDet = req.body;
         await Employee.updateOne({'_id':req.params.id},empUpdateDet)
@@ -100,7 +97,8 @@ router.put('/update/:id', async(req, res)=>{
         })
 })
 
-router.delete('/delete/:id', async(req , res)=>{
+//Deleting Employee
+router.delete('/deleteEmp/:id', async(req , res)=>{
     
     await Employee.deleteOne({_id : req.params.id}).then(
     ()=>{

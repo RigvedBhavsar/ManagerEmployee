@@ -1,7 +1,7 @@
+//Schema for Maneger
+
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
-
 const Maneger = new Schema({
     firstname : String,
     lastname : String,

@@ -1,18 +1,26 @@
 <div>
+    <!-- Button which will will popup the form for adding the new Employee -->
     <div>
         <button type="button" class="btn btn-primary addEmp" (click)="addEmpHandler()" >Add Employee</button>
     </div>
-
-
+    <!-- This form will display after the Add employee button clicked, 
+        Using Boolean variable added condition ,  which will help
+        for rendering the form in toggle Manner
+    -->
     <div *ngIf="isAddEmp">
         <div class="addEmpForm">
+            <!-- Designed a Form using Reactive form -->
             <form [formGroup]="addempform" (ngSubmit)="addEmp()">
                 <label>Name</label>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <small class="text-info">First Name</small>
+
+                        <!-- Shown the Error message as well as visual feedback as per validation -->
+
                         <input [class.is-invalid]="addempform.get('firstname').invalid && addempform.get('firstname').touched" type ="text" class="form-control" formControlName="firstname">
                         <small [class.d-none]="addempform.get('firstname').valid || addempform.get('firstname').untouched" class="text-danger">First Name is required</small>
+
                     </div>
                     <div class="form-group col-md-6">
                         <small class="text-info">Last Name</small>
@@ -64,7 +72,11 @@
             </form>  
         </div>
     </div>
-
+    
+    <!-- This form will display after the Update button gets clicked, 
+        Using Boolean variable added condition ,  which will help
+        for rendering the form in toggle Manner
+    -->
 
     <div *ngIf="isUpdateEmp">
         <div class="addEmpForm">
@@ -115,7 +127,7 @@
                 
                 <div class="form-group">
                     <label>City</label>
-                    <input [class.is-invalid]="addempform.get('city').invalid && addempform.get('city').touched"type="text" class="form-control" formControlName="city">
+                    <input [class.is-invalid]="addempform.get('city').invalid && addempform.get('city').touched"type="text" class="form-control" formControlName="city" >
                     <small [class.d-none]="addempform.get('city').valid ||addempform.get('city').untouched" class="text-danger">Invalid</small>
                 </div>
 
@@ -127,13 +139,10 @@
         </div>
     </div>
     
-
-<!-- 
-    <div *ngIf="isDeleteEmp">
-        <h1>Delete Employee</h1>
-    </div> -->
-
-
+    <!-- This Table will display initially when user logs in 
+        this is table where maneger can see the employee and add update 
+        and delete the employee.
+    -->
 
     <div class="overlay" *ngIf="isTabel">
         <table class="table">
@@ -149,23 +158,27 @@
                 <th scope="col"></th>
               </tr>
             </thead>
-
+            <!--Here we are iterating the data whicherver is comming from the databse,
+                and displaying each record one by one with its properties. 
+            -->
             <tbody>
+                <!-- Using Interpoloation we are displaying data which is comming from backent-->
                 <tr *ngFor="let data of Products">
                     <td>{{data._id}}</td>
                     <td>{{data.firstname}}</td>
                     <td>{{data.lastname}}</td>
                     <td>{{data.mobile}}</td>
                     <td>{{data.city}}</td>
+                    <!-- Here we change the format of date using angular pipes -->
                     <td>{{data.dob |  date:'dd/MM/yyyy'  }}</td>
+                    <!-- Button update employee Action-->
                     <td>
-                        <button class="btn btn-success" (click)="updateEmpHandler()">Update</button>
+                        <button class="btn btn-success" (click)="updateEmp(data._id)">Update</button>
                     </td>
-                    
+                    <!-- Button for Delete Employee Action-->
                     <td>
                         <button class="btn btn-danger"(click)="deleteEmp(data._id)">Delete</button>
                     </td>
-                    
                 </tr>
             </tbody>
           </table>

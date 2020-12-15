@@ -17,15 +17,16 @@ export class LoginComponent implements OnInit {
                 public router : Router,
                 public connect : ConnetService){}
 
- LoginForm = this.fbobj.group(
+    LoginForm = this.fbobj.group(
     {
-      // Add Multiple validations
-      username :['',Validators.required ],
+      email :['',Validators.required ],
       passowrd : ['',Validators.required]
     }
   );
 
   ngOnInit(): void {}
+  //calling method for log in the maneger
+  //this method will ensure first if user is authenticated or not using jwt
   login()
   {
     this.connect.loginManeger(this.LoginForm.value)

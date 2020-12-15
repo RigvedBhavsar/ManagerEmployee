@@ -1,7 +1,6 @@
+//Schema for emplyee 
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
-
 const Employee = new Schema({
     firstname : String,
     lastname : String,

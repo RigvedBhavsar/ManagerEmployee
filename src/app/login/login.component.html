@@ -4,8 +4,8 @@
     <div class="form-group">
       <label>User Name</label>
       <!--Use class binding for validation-->
-      <input [class.is-invalid] = "LoginForm.get('username').invalid && LoginForm.get('passowrd').touched" type="text" class="form-control" formControlName="username">
-      <small [class.d-none]="LoginForm.get('username').valid || LoginForm.get('username').untouched" class="text-danger">Username is required</small>
+      <input [class.is-invalid]="LoginForm.get('email').invalid && LoginForm.get('email').touched" type="text" class="form-control" formControlName="email">
+      <small [class.d-none]="LoginForm.get('email').valid || LoginForm.get('email').untouched" class="text-danger">Username is required</small>
     </div>
     
     <div class="form-group">
