@@ -17,7 +17,7 @@
         <a href="/signup" class="btn btn-link">sign up</a>
     </div>
     <div class="loginbtn">
-        <button type="submit" [disabled]="LoginForm.invalid" class="btn btn-primary butoonClass">Login</button>
+        <button type="submit" [disabled]="LoginForm.invalid" (click)="login()" class="btn btn-primary butoonClass">Login</button>
     </div>
   </form>
   </div>

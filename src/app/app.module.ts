@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { WildcardComponent } from './wildcard/wildcard.component';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 //importing the form modules
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
@@ -16,6 +17,11 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';          
 import {MatIconModule} from '@angular/material/icon';
+
+//importing for server communication 
+import {HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
+import { ConnetService } from './connet.service';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -33,9 +39,16 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ConnetService , AuthGuard ,
+    {
+        provide : HTTP_INTERCEPTORS,
+        useClass: TokenInterceptorService,
+        multi: true
+    }    
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

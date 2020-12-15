@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import {ConnetService} from '../connet.service';
+
 
 @Component({
   selector: 'app-employee',
@@ -11,59 +14,21 @@ export class EmployeeComponent implements OnInit {
 
   constructor(
     public fobj:FormBuilder,
-    public router:Router
+    public router:Router,
+    public connect : ConnetService
     ){ }
-  isAddEmp = false;
-  isUpdateEmp = false;
-  //isDeleteEmp = false;
-  isTabel = true;
+    isAddEmp = false;
+    isUpdateEmp = false;
+    isTabel = true;
 
-  Products  = [
-    {
-        id : 123,
-        firstname :"rigved",
-        lastname : "bhavsar",
-        address : "shivaji nagar",
-        dob : "02/04/1999",
-        mobile : 8554029391,
-        city :"pune"
-    },
-    {
-        id : 124,
-        firstname :"pratik",
-        lastname : "sutar",
-        address : "wadgao",
-        dob : "19/03/1997",
-        mobile : 8554029391,
-        city :"nagar"
-    },
-    {
-        id : 125,
-        firstname :"kshitija",
-        lastname : "kalekar",
-        address : "shivaji nagar",
-        dob : "21/05/1999",
-        mobile : 9767797530,
-        city :"nashik"
-    },
-  ];
+  Products  = [ ];
 
-  addEmpHandler()
-  {
-    this.isAddEmp = !this.isAddEmp;
-    this.isTabel = ! this.isTabel;
-  }
-  updateEmpHandler()
-  {
-    this.isUpdateEmp = ! this.isUpdateEmp;
-    this.isTabel = ! this.isTabel;
-  }
   
 
-  addempform = this.fobj.group(
+    addempform = this.fobj.group(
     {
-        fname:['',[Validators.required,Validators.pattern(('[a-zA-Z ]*'))]],
-        sname:['',[Validators.required,Validators.pattern(('[a-zA-Z ]*'))]],
+        firstname:['',[Validators.required,Validators.pattern(('[a-zA-Z ]*'))]],
+        lastname:['',[Validators.required,Validators.pattern(('[a-zA-Z ]*'))]],
         email:['',[Validators.required, Validators.pattern(("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"))]],
         company:['',Validators.required],
         address:['',Validators.required],
@@ -75,7 +40,15 @@ export class EmployeeComponent implements OnInit {
 
     addEmp()
     {
-        alert("Employee Added");
+
+        this.connect.addEmployee(this.addempform.value)
+        .subscribe
+        (
+            data => console.log("Success", data),
+            error => console.error("!error", error)
+        )
+        alert("Employee Added Succesfully !");
+        
         this.router.navigate(['/']);
         this.isAddEmp = !this.isAddEmp;
         this.isTabel = ! this.isTabel;
@@ -89,12 +62,43 @@ export class EmployeeComponent implements OnInit {
         this.isTabel = ! this.isTabel;
     }
 
-    deleteEmp()
+    deleteEmp(id:string)
     {
-        alert("Do you Realy want to Delete Emp");
-        this.router.navigate(['/']);
+        this.connect.deleteEmp(id)
+        .subscribe(
+            res=>{
+                console.log(res);
+                this.router.navigate(['/']);
+            },
+            err=>{
+                console.log(err);
+            }
+        )
+        alert("Employee Deleted!");
+        this.router.navigate(['/emp']);
     }
-  ngOnInit(): void {
-  }
-
+    addEmpHandler()
+    {
+        this.isAddEmp = !this.isAddEmp;
+        this.isTabel = ! this.isTabel;
+    }
+    updateEmpHandler()
+    {
+        this.isUpdateEmp = ! this.isUpdateEmp;
+        this.isTabel = ! this.isTabel;
+    }
+    
+    ngOnInit(): void {
+        this.connect.getAllEmp()
+        .subscribe(
+          res => this.Products = res,
+          err => {
+            if( err instanceof HttpErrorResponse ) {
+              if (err.status === 401) {
+                this.router.navigate(['/login'])
+              }
+            }
+          }
+        )
+    }
 }

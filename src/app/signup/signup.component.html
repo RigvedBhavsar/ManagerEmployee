@@ -4,13 +4,13 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <small class="text-info">First Name</small>
-                <input [class.is-invalid]="userform.get('fname').invalid && userform.get('fname').touched" type ="text" class="form-control" formControlName="fname">
-                <small [class.d-none]="userform.get('fname').valid || userform.get('fname').untouched" class="text-danger">First Name is required</small>
+                <input [class.is-invalid]="userform.get('firstname').invalid && userform.get('firstname').touched" type ="text" class="form-control" formControlName="firstname">
+                <small [class.d-none]="userform.get('firstname').valid || userform.get('firstname').untouched" class="text-danger">First Name is required</small>
             </div>
             <div class="form-group col-md-6">
                 <small class="text-info">Last Name</small>
-                <input [class.is-invalid]="userform.get('sname').invalid && userform.get('sname').touched" type ="text" class="form-control" formControlName="sname">
-                <small [class.d-none]="userform.get('sname').valid || userform.get('sname').untouched" class="text-danger">Last Name is required</small>
+                <input [class.is-invalid]="userform.get('lastname').invalid && userform.get('lastname').touched" type ="text" class="form-control" formControlName="lastname">
+                <small [class.d-none]="userform.get('lastname').valid || userform.get('lastname').untouched" class="text-danger">Last Name is required</small>
             </div>
         </div>
  

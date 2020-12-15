@@ -11,13 +11,13 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <small class="text-info">First Name</small>
-                        <input [class.is-invalid]="addempform.get('fname').invalid && addempform.get('fname').touched" type ="text" class="form-control" formControlName="fname">
-                        <small [class.d-none]="addempform.get('fname').valid || addempform.get('fname').untouched" class="text-danger">First Name is required</small>
+                        <input [class.is-invalid]="addempform.get('firstname').invalid && addempform.get('firstname').touched" type ="text" class="form-control" formControlName="firstname">
+                        <small [class.d-none]="addempform.get('firstname').valid || addempform.get('firstname').untouched" class="text-danger">First Name is required</small>
                     </div>
                     <div class="form-group col-md-6">
                         <small class="text-info">Last Name</small>
-                        <input [class.is-invalid]="addempform.get('sname').invalid && addempform.get('sname').touched" type ="text" class="form-control" formControlName="sname">
-                        <small [class.d-none]="addempform.get('sname').valid || addempform.get('sname').untouched" class="text-danger">Last Name is required</small>
+                        <input [class.is-invalid]="addempform.get('lastname').invalid && addempform.get('lastname').touched" type ="text" class="form-control" formControlName="lastname">
+                        <small [class.d-none]="addempform.get('lastname').valid || addempform.get('lastname').untouched" class="text-danger">Last Name is required</small>
                     </div>
                 </div>
          
@@ -29,7 +29,7 @@
         
                 <div class="form-group">
                     <label>Mobile</label>
-                    <input [class.is-invalid]="addempform.get('mobile').invalid && addempform.get('mobile').touched" type="password" class="form-control" formControlName="mobile">
+                    <input [class.is-invalid]="addempform.get('mobile').invalid && addempform.get('mobile').touched" type="tel" class="form-control" formControlName="mobile">
                     <small [class.d-none]="addempform.get('mobile').valid || addempform.get('mobile').untouched" class="text-danger">invalid</small>
                 </div>
                 
@@ -73,13 +73,13 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <small class="text-info">First Name</small>
-                        <input [class.is-invalid]="addempform.get('fname').invalid && addempform.get('fname').touched" type ="text" class="form-control" formControlName="fname">
-                        <small [class.d-none]="addempform.get('fname').valid || addempform.get('fname').untouched" class="text-danger">First Name is required</small>
+                        <input [class.is-invalid]="addempform.get('firstname').invalid && addempform.get('firstname').touched" type ="text" class="form-control" formControlName="firstname">
+                        <small [class.d-none]="addempform.get('firstname').valid || addempform.get('firstname').untouched" class="text-danger">First Name is required</small>
                     </div>
                     <div class="form-group col-md-6">
                         <small class="text-info">Last Name</small>
-                        <input [class.is-invalid]="addempform.get('sname').invalid && addempform.get('sname').touched" type ="text" class="form-control" formControlName="sname">
-                        <small [class.d-none]="addempform.get('sname').valid || addempform.get('sname').untouched" class="text-danger">Last Name is required</small>
+                        <input [class.is-invalid]="addempform.get('lastname').invalid && addempform.get('lastname').touched" type ="text" class="form-control" formControlName="lastname">
+                        <small [class.d-none]="addempform.get('lastname').valid || addempform.get('lastname').untouched" class="text-danger">Last Name is required</small>
                     </div>
                 </div>
          
@@ -152,18 +152,18 @@
 
             <tbody>
                 <tr *ngFor="let data of Products">
-                    <td>{{data.id}}</td>
+                    <td>{{data._id}}</td>
                     <td>{{data.firstname}}</td>
                     <td>{{data.lastname}}</td>
                     <td>{{data.mobile}}</td>
                     <td>{{data.city}}</td>
-                    <td>{{data.dob}}</td>
+                    <td>{{data.dob |  date:'dd/MM/yyyy'  }}</td>
                     <td>
                         <button class="btn btn-success" (click)="updateEmpHandler()">Update</button>
                     </td>
                     
                     <td>
-                        <button class="btn btn-danger"(click)="deleteEmp()">Delete</button>
+                        <button class="btn btn-danger"(click)="deleteEmp(data._id)">Delete</button>
                     </td>
                     
                 </tr>
