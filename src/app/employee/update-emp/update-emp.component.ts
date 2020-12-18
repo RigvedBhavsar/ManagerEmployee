@@ -1,6 +1,6 @@
 import { Component, OnInit , Input } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {Router } from '@angular/router';
+import {Router , ActivatedRoute } from '@angular/router';
 import {ConnetService} from '../../connet.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class UpdateEmpComponent implements OnInit {
 
     constructor(public fobj:FormBuilder,
                 public router:Router,
+                public activatedrouter : ActivatedRoute,
                 public connect : ConnetService){ }
 
     addempform = this.fobj.group({
@@ -40,5 +41,9 @@ export class UpdateEmpComponent implements OnInit {
             },
             err=>console.log(err));
     }
-  ngOnInit(): void {  }
+    ngOnInit(): void { 
+        let id = this.activatedrouter.snapshot.paramMap.get('_id');
+        this.empId = id;
+        console.log(this.empId + "from update");
+   }
 }

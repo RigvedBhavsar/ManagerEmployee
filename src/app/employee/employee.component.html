@@ -88,10 +88,10 @@
                     <td>{{data.lastname}}</td>
                     <td>{{data.mobile}}</td>
                     <td>{{data.city}}</td>
-                    <td>{{data.dob |  date:'dd/MM/yyyy'  }}</td>
+                    <td>{{data.dob |  date:'dd/MM/yyyy'}}</td>
             
                     <td>
-                        <button class="btn btn-success" (click)="sendDataTOChild(data._id)">Update</button>
+                        <button class="btn btn-success" (click)="sendDataTOChild(data)" >Update</button>
                     </td>
  
                     <td>

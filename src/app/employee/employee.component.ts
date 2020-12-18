@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import {ConnetService} from '../connet.service';
 import { UpdateEmpComponent } from './update-emp/update-emp.component';
+import { Employee } from '../employee';
 
 @Component({
   selector: 'app-employee',
@@ -70,9 +71,10 @@ export class EmployeeComponent implements OnInit {
         this.isTabel = ! this.isTabel;
     }
 
-    sendDataTOChild(_idsend : string)
+    sendDataTOChild(Empobject)
     {
-       console.log(_idsend);
+       console.log(Empobject._id + 'from Employee');
+       this.router.navigate(['/updateEmp/', Empobject._id])
     }
 
     ngOnInit(): void {

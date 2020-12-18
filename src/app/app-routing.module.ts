@@ -13,7 +13,7 @@ import { UpdateEmpComponent } from './employee/update-emp/update-emp.component';
 const routes: Routes = [
     {path:'login',component:LoginComponent},
     {path:'signup',component:SignupComponent},
-    {path : 'empupdate' , component:UpdateEmpComponent},
+    {path : 'updateEmp/:id' , component:UpdateEmpComponent},
     {path : 'emp' , component:HomeComponent},
     //Here we are cheking is user is authenticated or not
     // {path:'emp', canActivate:[AuthGuard],component:HomeComponent},
