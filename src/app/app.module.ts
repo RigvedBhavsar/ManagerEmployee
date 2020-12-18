@@ -22,6 +22,7 @@ import {HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ConnetService } from './connet.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { UpdateEmpComponent } from './employee/update-emp/update-emp.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
     LoginComponent,
     SignupComponent,
     EmployeeComponent,
-    WildcardComponent
+    WildcardComponent,
+    UpdateEmpComponent
   ],
   imports: [
     BrowserModule,

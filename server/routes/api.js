@@ -48,6 +48,7 @@ router.post('/loginManeger', (req, res) => {
 router.post('/signupManeger', (req,res)=>{
     let userData = req.body;
     let user = new Maneger(userData);
+
     user.save((err,registerdUser)=>{
         if(err){
             console.log(err);
@@ -61,7 +62,7 @@ router.post('/signupManeger', (req,res)=>{
 })
 
 //Get All Employees
-router.get('/getEmp', ensureToken , async(req, res) => {
+router.get('/getEmp', /*ensureToken ,*/ async(req, res) => {
     try{
         const emp = await Employee.find()
         res.json(emp)
@@ -69,6 +70,17 @@ router.get('/getEmp', ensureToken , async(req, res) => {
      res.send('Error :' + err)
     }
 })
+
+//Get All Employees
+router.get('/getOneEmp/:id', async(req, res) => {
+    try{
+        const oneEmp = await Employee.findOne({'_id':req.params.id})
+        res.json(oneEmp)
+    }catch(err){
+     res.send('Error :' + err)
+    }
+})
+
 
 //Addinf Employee
 router.post('/addEmp', async(req,res) => {
@@ -108,5 +120,7 @@ router.delete('/deleteEmp/:id', async(req , res)=>{
         res.status(400).send("Error : Couldnt Delete the Employee");
     });
 });
+
+
 
 module.exports = router;

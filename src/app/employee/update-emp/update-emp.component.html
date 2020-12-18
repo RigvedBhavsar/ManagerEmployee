@@ -1,0 +1,60 @@
+
+    <div class="addEmpForm">
+        <form [formGroup]="addempform" (ngSubmit)="updateEmp()">
+            <label>Name</label>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <small class="text-info">First Name</small>
+                    <input [class.is-invalid]="addempform.get('firstname').invalid && addempform.get('firstname').touched" type ="text" class="form-control" formControlName="firstname">
+                    <small [class.d-none]="addempform.get('firstname').valid || addempform.get('firstname').untouched" class="text-danger">First Name is required</small>
+                </div>
+                <div class="form-group col-md-6">
+                    <small class="text-info">Last Name</small>
+                    <input [class.is-invalid]="addempform.get('lastname').invalid && addempform.get('lastname').touched" type ="text" class="form-control" formControlName="lastname">
+                    <small [class.d-none]="addempform.get('lastname').valid || addempform.get('lastname').untouched" class="text-danger">Last Name is required</small>
+                </div>
+            </div>
+     
+            <div class="form-group">
+                <label>Email</label>
+                <input [class.is-invalid]="addempform.get('email').invalid && addempform.get('email').touched"type="text" class="form-control" formControlName="email">
+                <small [class.d-none]="addempform.get('email').valid || addempform.get('email').untouched" class="text-danger">invalid</small>
+            </div>
+    
+            <div class="form-group">
+                <label>Mobile</label>
+                <input [class.is-invalid]="addempform.get('mobile').invalid && addempform.get('mobile').touched" type="password" class="form-control" formControlName="mobile">
+                <small [class.d-none]="addempform.get('mobile').valid || addempform.get('mobile').untouched" class="text-danger">invalid</small>
+            </div>
+            
+            <div class="form-group">
+                <label>DOB</label>
+                <input [class.is-invalid]="addempform.get('dob').invalid && addempform.get('dob').touched" type="date" class="form-control" formControlName="dob">
+                <small [class.d-none]="addempform.get('dob').valid ||addempform.get('dob').untouched" class="text-danger">Invalid</small>
+            </div>
+            
+            <div class="form-group">
+                <label>Company</label>
+                <input [class.is-invalid]="addempform.get('company').invalid && addempform.get('company').touched" type="text" class="form-control" formControlName="company">
+                <small [class.d-none]="addempform.get('company').valid ||addempform.get('company').untouched" class="text-danger">Invalid</small>
+            </div>
+            
+            <div class="form-group">
+                <label>Address</label>
+                <input [class.is-invalid]="addempform.get('address').invalid && addempform.get('address').touched"type="text" class="form-control" formControlName="address">
+                <small [class.d-none]="addempform.get('address').valid ||addempform.get('address').untouched" class="text-danger">Invalid</small>
+            </div>
+            
+            <div class="form-group">
+                <label>City</label>
+                <input [class.is-invalid]="addempform.get('city').invalid && addempform.get('city').touched"type="text" class="form-control" formControlName="city" >
+                <small [class.d-none]="addempform.get('city').valid ||addempform.get('city').untouched" class="text-danger">Invalid</small>
+            </div>
+
+            <br>
+            <div class="addEmpbtn">
+                <button  type="submit" [disabled]="addempform.invalid" class=" btn btn-primary">Submit</button> 
+            </div>        
+        </form>  
+    </div>
+
