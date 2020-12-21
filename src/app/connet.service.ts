@@ -16,7 +16,8 @@ export class ConnetService {
     private _getEmpUrl = "  http://localhost:3000/api/getEmp";
     private _addEmpUrl = "http://localhost:3000/api/addEmp";
     private _UpdateEmpUrl = "http://localhost:3000/api/updateEmp";
-    private _delEmpUrl = "http://localhost:3000/api/deleteEmp"
+    private _delEmpUrl = "http://localhost:3000/api/deleteEmp";
+    private _getOneEmpUrl = "http://localhost:3000/api/getOneEmp";
     
     //Creating object
     constructor(private http : HttpClient,
@@ -40,6 +41,11 @@ export class ConnetService {
         return this.http.get<any>(this._getEmpUrl)
     }
 
+
+    getOneEmp(id:string){
+        return this.http.get<any>(`${this._getOneEmpUrl}/${id}`);
+    }
+
     //For adding employee
     addEmployee(empdet : Employee)
     {
@@ -49,7 +55,7 @@ export class ConnetService {
     //For updating employee
     updateEmp(id : string , newempdet : Employee)
     {
-        return this.http.put<Employee>(`${this._UpdateEmpUrl}/${id}`, newempdet );
+        return this.http.put<Employee[]>(`${this._UpdateEmpUrl}/${id}`, newempdet);
     }
 
     //for deleting employee

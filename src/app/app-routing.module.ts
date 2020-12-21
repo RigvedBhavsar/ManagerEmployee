@@ -13,15 +13,9 @@ import { UpdateEmpComponent } from './employee/update-emp/update-emp.component';
 const routes: Routes = [
     {path:'login',component:LoginComponent},
     {path:'signup',component:SignupComponent},
-    {path : 'updateEmp/:id' , component:UpdateEmpComponent},
-    {path : 'emp' , component:HomeComponent},
-    //Here we are cheking is user is authenticated or not
-    // {path:'emp', canActivate:[AuthGuard],component:HomeComponent},
-    
-    //default route
-    {path:'',redirectTo:'/emp', pathMatch:'full'},
-    
-    //wildcard route
+    {path : 'updateEmp' , component:UpdateEmpComponent},
+    {path:'emp', canActivate:[AuthGuard],component:HomeComponent},
+    {path:'',redirectTo:'/emp', pathMatch:'full'},    
     {path:'**',component:WildcardComponent}
 ];
 

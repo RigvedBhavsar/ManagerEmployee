@@ -62,7 +62,7 @@ router.post('/signupManeger', (req,res)=>{
 })
 
 //Get All Employees
-router.get('/getEmp', /*ensureToken ,*/ async(req, res) => {
+router.get('/getEmp', ensureToken , async(req, res) => {
     try{
         const emp = await Employee.find()
         res.json(emp)
@@ -95,7 +95,7 @@ router.post('/addEmp', async(req,res) => {
 })
 
 //Updating Employee
-router.put('/update/:id', async(req, res)=>{
+router.put('/updateEmp/:id', async(req, res)=>{
     const empUpdateDet = req.body;
         await Employee.updateOne({'_id':req.params.id},empUpdateDet)
         .then((user)=>{
@@ -112,7 +112,7 @@ router.put('/update/:id', async(req, res)=>{
 //Deleting Employee
 router.delete('/deleteEmp/:id', async(req , res)=>{
     
-    await Employee.deleteOne({_id : req.params.id}).then(
+    await Employee.deleteOne({'_id' : req.params.id}).then(
     ()=>{
         res.status(200).send("Employee Deleted Successfully");
     })

@@ -20,13 +20,12 @@ export class LoginComponent implements OnInit {
     LoginForm = this.fbobj.group(
     {
       email :['',Validators.required ],
-      passowrd : ['',Validators.required]
+      password : ['',Validators.required]
     }
   );
 
   ngOnInit(): void {}
-  //calling method for log in the maneger
-  //this method will ensure first if user is authenticated or not using jwt
+  
   login()
   {
     this.connect.loginManeger(this.LoginForm.value)

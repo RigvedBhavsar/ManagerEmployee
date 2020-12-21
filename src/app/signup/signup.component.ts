@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
             error => console.error("!error", error)
         )
         alert("Successfully Registerd");
-       this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
     }
     ngOnInit(): void {}
 }

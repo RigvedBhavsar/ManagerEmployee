@@ -10,8 +10,8 @@
     
     <div class="form-group">
       <label>Password</label>
-      <input [class.is-invalid] = "LoginForm.get('passowrd').invalid && LoginForm.get('passowrd').touched" type="password" class="form-control" formControlName="passowrd">
-      <small [class.d-none]="LoginForm.get('passowrd').valid || LoginForm.get('passowrd').untouched" class="text-danger">Password is required</small>
+      <input [class.is-invalid]="LoginForm.get('password').invalid && LoginForm.get('password').touched" type="password" class="form-control" formControlName="password">
+      <small [class.d-none]="LoginForm.get('password').valid || LoginForm.get('password').untouched" class="text-danger">Password is required</small>
     </div>
     <div class="signup">
         <a href="/signup" class="btn btn-link">sign up</a>

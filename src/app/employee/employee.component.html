@@ -91,7 +91,8 @@
                     <td>{{data.dob |  date:'dd/MM/yyyy'}}</td>
             
                     <td>
-                        <button class="btn btn-success" (click)="sendDataTOChild(data)" >Update</button>
+                        <a class="btn btn-success" [routerLink]="['/updateEmp',data]">Update</a>
+                        <!-- <button class="btn btn-success" (click)="sendDataTOChild(data)" >Update</button> -->
                     </td>
  
                     <td>

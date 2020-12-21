@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate } from '@angular/router';
+
 import { ConnetService } from './connet.service';
 import { Router } from '@angular/router'
 
@@ -12,8 +12,6 @@ export class AuthGuard implements CanActivate {
     constructor(private _conneet: ConnetService,
                 private _router: Router){ }
         
-        // Guards return either true if the user can access a router or false if they donts.
-        // CanActivate checks is user can visit the component or not.
         canActivate(): boolean {
         if (this._conneet.loggedIn()) {
             console.log('true')

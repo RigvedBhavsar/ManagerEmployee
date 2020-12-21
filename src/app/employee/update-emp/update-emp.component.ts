@@ -2,6 +2,7 @@ import { Component, OnInit , Input } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Router , ActivatedRoute } from '@angular/router';
 import {ConnetService} from '../../connet.service';
+import {Employee} from '../../employee';
 
 @Component({
   selector: 'app-update-emp',
@@ -10,40 +11,38 @@ import {ConnetService} from '../../connet.service';
 })
 export class UpdateEmpComponent implements OnInit {
 
-   // @Input() empId : string;
-   public empId : string ;
-
+   
+    Employees  = new Employee ('','','',0,0,'','','');
+    
     constructor(public fobj:FormBuilder,
                 public router:Router,
                 public activatedrouter : ActivatedRoute,
-                public connect : ConnetService){ }
-
-    addempform = this.fobj.group({
-        firstname:['',[Validators.required,Validators.pattern(('[a-zA-Z ]*'))]],
-        lastname:['',[Validators.required,Validators.pattern(('[a-zA-Z ]*'))]],
-        email:['',[Validators.required, Validators.pattern(("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"))]],
-        company:['',Validators.required],
-        address:['',Validators.required],
-        mobile:['',[Validators.required,Validators.pattern('[0-9]{10}')]],
-        dob :['',Validators.required],
-        city:['',Validators.required]
-    });
+                public connect : ConnetService,){ }
 
     updateEmp(id : string)
     {
-
-        this.connect.updateEmp( id ,this.addempform.value)
+        this.connect.updateEmp( id ,this.Employees)
         .subscribe(
             res=>{
-                console.log(res);
                 alert("Employee Updated");
-                //this.router.navigate(['/']);
+                this.router.navigate(['/']);
             },
-            err=>console.log(err));
+            err=>{
+                console.log(err),
+                alert("Unable to Update Employee")
+            }
+        );
     }
     ngOnInit(): void { 
-        let id = this.activatedrouter.snapshot.paramMap.get('_id');
-        this.empId = id;
-        console.log(this.empId + "from update");
+        var id=this.activatedrouter.snapshot.paramMap.get("_id");
+        this.connect.getOneEmp(id)
+        .subscribe(
+          res => {
+            this.Employees = res
+          },
+          err => {
+            alert("No Response");
+          }
+        )
    }
 }
